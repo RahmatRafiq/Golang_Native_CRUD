@@ -5,6 +5,7 @@ import (
 	"Golang_CRUD_Native/models/categorymodel"
 	"html/template"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -47,8 +48,46 @@ func Add(W http.ResponseWriter, r *http.Request) {
 
 }
 
-func Edit(W http.ResponseWriter, r *http.Request) {
+// func Edit(W http.ResponseWriter, r *http.Request) {
+// 	if r.Method == "GET" {
+// 		temp, err := template.ParseFiles("views/category/edit.html")
+// 		if err != nil {
+// 			panic(err)
+// 		}
 
+// 		idString := r.URL.Query().Get("id")
+// 		id, err := strconv.Atoi(idString)
+// 		if err != nil {
+// 			panic(err)
+// 		}
+
+// 		category := categorymodel.Detail(id)
+// 		data := map[string]interface{}{
+// 			"category": category,
+// 		}
+// 		temp.Execute(W, data)
+// 	}
+// }
+
+func Edit(W http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		temp, err := template.ParseFiles("views/category/edit.html")
+		if err != nil {
+			panic(err)
+		}
+
+		idString := r.URL.Query().Get("id")
+		id, err := strconv.Atoi(idString)
+		if err != nil {
+			panic(err)
+		}
+
+		category := categorymodel.Detail(id)
+		data := map[string]any{
+			"category": category,
+		}
+		temp.Execute(W, data)
+	}
 }
 
 func Destroy(W http.ResponseWriter, r *http.Request) {

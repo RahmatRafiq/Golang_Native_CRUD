@@ -45,3 +45,13 @@ func Create(category entities.Category) bool {
 
 	return LastInsertId > 0
 }
+
+func Detail(id int) entities.Category {
+	row := config.DB.QueryRow(`SELECT * FROM categories WHERE id = ?`, id)
+
+	var category entities.Category
+	if err := row.Scan(&category.Id, &category.Name, &category.CreatedAt, &category.UpdatedAt); err != nil {
+		panic(err)
+	}
+	return category
+}
