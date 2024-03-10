@@ -30,5 +30,3 @@ func Edit(W http.ResponseWriter, r *http.Request) {
 func Destroy(W http.ResponseWriter, r *http.Request) {
 
 }
-
-// aSDASDASDFSA
