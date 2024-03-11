@@ -42,32 +42,11 @@ func Add(W http.ResponseWriter, r *http.Request) {
 			temp, _ := template.ParseFiles("views/category/create.html")
 			temp.Execute(W, nil)
 
-			http.Redirect(W, r, "/categories", http.StatusSeeOther)
 		}
+		http.Redirect(W, r, "/categories", http.StatusSeeOther)
 	}
 
 }
-
-// func Edit(W http.ResponseWriter, r *http.Request) {
-// 	if r.Method == "GET" {
-// 		temp, err := template.ParseFiles("views/category/edit.html")
-// 		if err != nil {
-// 			panic(err)
-// 		}
-
-// 		idString := r.URL.Query().Get("id")
-// 		id, err := strconv.Atoi(idString)
-// 		if err != nil {
-// 			panic(err)
-// 		}
-
-// 		category := categorymodel.Detail(id)
-// 		data := map[string]interface{}{
-// 			"category": category,
-// 		}
-// 		temp.Execute(W, data)
-// 	}
-// }
 
 func Edit(W http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
